@@ -8,23 +8,34 @@
 
 import SwiftUI
 
+struct Website: Identifiable, Hashable {
+    var id: String {
+        return self.url
+    }
+    var url: String
+    var title: String
+}
 
 struct ContentView: View {
-    var names: [String] = ["World", "Universe", "Berkeley"]
+    var websites: [Website] = [
+        Website(url: "https://google.com", title: "Google"),
+        Website(url: "https://twitter.com", title: "Twitter"),
+        Website(url: "https://reddit.com", title: "Reddit")
+    ]
+
     @State var searchText: String = ""
 
     var body: some View {
-        VStack(alignment: .leading) {
-            SearchBar(text: $searchText)
-            List(names.filter({ searchText.isEmpty || $0.contains(searchText) }), id: \.self) { name in
-                VStack(alignment: .leading) {
-                    Text("Hello")
-                    Text(name)
-                        .fontWeight(.bold)
-                        .padding(.top)
-                        .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack(alignment: .leading) {
+                SearchBar(text: $searchText)
+                List(websites.filter({ searchText.isEmpty || $0.title.contains(searchText) }), id: \.self) { website in
+                    NavigationLink(destination: WebsiteView(website: website)) {
+                        WebsiteRow(website: website)
+                    }
                 }
             }
+            .navigationBarTitle(Text("Sites"))
         }
     }
 }
@@ -32,5 +43,27 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct WebsiteRow: View {
+    let website: Website
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(website.title)
+                .font(.headline)
+            Text(website.url)
+                .font(.subheadline)
+        }
+    }
+}
+
+struct WebsiteView: View {
+    let website: Website
+
+    var body: some View {
+        WebView(request: URLRequest(url: URL(string: website.url)!))
+        .navigationBarTitle(Text(website.title), displayMode: .inline)
     }
 }
