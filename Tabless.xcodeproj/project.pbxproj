@@ -3,10 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D58D274424B0692300F83072 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = D58D274324B0692300F83072 /* GRDB */; };
+		D58D274624B06A8F00F83072 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D274524B06A8F00F83072 /* World.swift */; };
+		D58D274824B06AE800F83072 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D274724B06AE800F83072 /* AppDatabase.swift */; };
+		D58D274A24B079DB00F83072 /* HistoryEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D274924B079DA00F83072 /* HistoryEntry.swift */; };
 		D59B1B0424AB24F6002BF927 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B1B0324AB24F6002BF927 /* AppDelegate.swift */; };
 		D59B1B0624AB24F6002BF927 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B1B0524AB24F6002BF927 /* SceneDelegate.swift */; };
 		D59B1B0824AB24F6002BF927 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B1B0724AB24F6002BF927 /* ContentView.swift */; };
@@ -19,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D58D274524B06A8F00F83072 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		D58D274724B06AE800F83072 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
+		D58D274924B079DA00F83072 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
 		D59B1B0024AB24F6002BF927 /* Tabless.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tabless.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D59B1B0324AB24F6002BF927 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D59B1B0524AB24F6002BF927 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D59B1B1D24AB43C7002BF927 /* WebKit.framework in Frameworks */,
+				D58D274424B0692300F83072 /* GRDB in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +81,9 @@
 				D59B1B0B24AB2500002BF927 /* Preview Content */,
 				D59B1B1724AB2E14002BF927 /* SearchBar.swift */,
 				D59B1B1924AB40E3002BF927 /* WebView.swift */,
+				D58D274524B06A8F00F83072 /* World.swift */,
+				D58D274724B06AE800F83072 /* AppDatabase.swift */,
+				D58D274924B079DA00F83072 /* HistoryEntry.swift */,
 			);
 			path = Tabless;
 			sourceTree = "<group>";
@@ -109,6 +120,9 @@
 			dependencies = (
 			);
 			name = Tabless;
+			packageProductDependencies = (
+				D58D274324B0692300F83072 /* GRDB */,
+			);
 			productName = Tabless;
 			productReference = D59B1B0024AB24F6002BF927 /* Tabless.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +151,9 @@
 				Base,
 			);
 			mainGroup = D59B1AF724AB24F6002BF927;
+			packageReferences = (
+				D58D274224B0692300F83072 /* XCRemoteSwiftPackageReference "GRDB.swift" */,
+			);
 			productRefGroup = D59B1B0124AB24F6002BF927 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -164,8 +181,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D58D274624B06A8F00F83072 /* World.swift in Sources */,
+				D58D274A24B079DB00F83072 /* HistoryEntry.swift in Sources */,
 				D59B1B0424AB24F6002BF927 /* AppDelegate.swift in Sources */,
 				D59B1B1A24AB40E4002BF927 /* WebView.swift in Sources */,
+				D58D274824B06AE800F83072 /* AppDatabase.swift in Sources */,
 				D59B1B1824AB2E15002BF927 /* SearchBar.swift in Sources */,
 				D59B1B0624AB24F6002BF927 /* SceneDelegate.swift in Sources */,
 				D59B1B0824AB24F6002BF927 /* ContentView.swift in Sources */,
@@ -362,6 +382,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D58D274224B0692300F83072 /* XCRemoteSwiftPackageReference "GRDB.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/groue/GRDB.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D58D274324B0692300F83072 /* GRDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D58D274224B0692300F83072 /* XCRemoteSwiftPackageReference "GRDB.swift" */;
+			productName = GRDB;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D59B1AF824AB24F6002BF927 /* Project object */;
 }

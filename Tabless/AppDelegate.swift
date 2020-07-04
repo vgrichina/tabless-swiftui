@@ -7,14 +7,16 @@
 //
 
 import UIKit
+import GRDB
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Setup database.
+        // TODO: Error handling left as an exercise for the reader.
+        try! setupDatabase()
+
         return true
     }
 
@@ -33,5 +35,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    // MARK: - Database Setup
+
+    private func setupDatabase() throws {
+        // AppDelegate chooses the location of the database file.
+        // See https://github.com/groue/GRDB.swift/blob/master/README.md#database-connections
+        let databaseURL = try FileManager.default
+            .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            .appendingPathComponent("db.sqlite")
+        let dbQueue = try DatabaseQueue(path: databaseURL.path)
+
+        // Create the shared application database
+        let database = try AppDatabase(dbQueue)
+
+        // TODO: Populate the database if it is empty, for better demo purpose.
+        // try database.createRandomPlayersIfEmpty()
+
+        // Expose it to the rest of the application
+        Current.database = { database }
+    }
 }
 
