@@ -16,7 +16,18 @@ extension HistoryEntry {
     static func new(url: String, title: String = "") -> HistoryEntry {
         HistoryEntry(id: nil, url: url, title: title)
     }
+
+    private static let samples = [
+        HistoryEntry.new(url: "http://example.com", title: "Example"),
+        HistoryEntry.new(url: "http://reddit.com", title: "Reddit"),
+        HistoryEntry.new(url: "http://google.com", title: "Google"),
+    ]
+
+    static func newRandom() -> HistoryEntry {
+        samples.randomElement()!
+    }
 }
+
 
 // MARK: - Persistence
 /// Make HistoryEntry a Codable Record.

@@ -58,12 +58,3 @@ struct WebsiteRow: View {
         }
     }
 }
-
-struct WebsiteView: View {
-    let website: Website
-
-    var body: some View {
-        WebView(request: URLRequest(url: URL(string: website.url)!))
-        .navigationBarTitle(Text(website.title), displayMode: .inline)
-    }
-}

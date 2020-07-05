@@ -76,17 +76,32 @@ extension AppDatabase {
 //        }
 //    }
 
+    func createRandomEntriesIfEmpty() throws {
+        try dbQueue.write { db in
+            if try HistoryEntry.fetchCount(db) == 0 {
+                try createRandomEntries(db)
+            }
+        }
+    }
+
+    private func createRandomEntries(_ db: Database) throws {
+        for _ in 0..<10 {
+            var entry = HistoryEntry.newRandom()
+            try entry.insert(db)
+        }
+    }
+
     // MARK: Reads
 
-//    /// Returns a publisher that tracks changes in players ordered by name
-//    func playersOrderedByNamePublisher() -> AnyPublisher<[Player], Error> {
-//        ValueObservation
-//            .tracking(Player.all().orderedByName().fetchAll)
-//            // Use the .immediate scheduling so that views do not have to wait
-//            // until the players are loaded.
-//            .publisher(in: dbQueue, scheduling: .immediate)
-//            .eraseToAnyPublisher()
-//    }
+    /// Returns a publisher that tracks changes in players ordered by name
+    func entriesOrderedByTitle() -> AnyPublisher<[HistoryEntry], Error> {
+        ValueObservation
+            .tracking(HistoryEntry.all().fetchAll)
+            // Use the .immediate scheduling so that views do not have to wait
+            // until the players are loaded.
+            .publisher(in: dbQueue, scheduling: .immediate)
+            .eraseToAnyPublisher()
+    }
 }
 
 // MARK: - Support for Tests and Previews
@@ -100,7 +115,7 @@ extension AppDatabase {
     /// Returns an in-memory database populated with random data
     static func random() throws -> AppDatabase {
         let database = try AppDatabase.empty()
-        // TODO: try database.createRandomPlayersIfEmpty()
+        try database.createRandomEntriesIfEmpty()
         return database
     }
 }

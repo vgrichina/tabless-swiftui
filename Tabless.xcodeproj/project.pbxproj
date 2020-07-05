@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D58D1B0C24B1B6450015BEF3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D1B0B24B1B6450015BEF3 /* HistoryView.swift */; };
+		D58D1B0E24B1C87B0015BEF3 /* WebsiteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D1B0D24B1C87B0015BEF3 /* WebsiteView.swift */; };
 		D58D274424B0692300F83072 /* GRDB in Frameworks */ = {isa = PBXBuildFile; productRef = D58D274324B0692300F83072 /* GRDB */; };
 		D58D274624B06A8F00F83072 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D274524B06A8F00F83072 /* World.swift */; };
 		D58D274824B06AE800F83072 /* AppDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D274724B06AE800F83072 /* AppDatabase.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D58D1B0B24B1B6450015BEF3 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		D58D1B0D24B1C87B0015BEF3 /* WebsiteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteView.swift; sourceTree = "<group>"; };
 		D58D274524B06A8F00F83072 /* World.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
 		D58D274724B06AE800F83072 /* AppDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDatabase.swift; sourceTree = "<group>"; };
 		D58D274924B079DA00F83072 /* HistoryEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryEntry.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				D58D274524B06A8F00F83072 /* World.swift */,
 				D58D274724B06AE800F83072 /* AppDatabase.swift */,
 				D58D274924B079DA00F83072 /* HistoryEntry.swift */,
+				D58D1B0B24B1B6450015BEF3 /* HistoryView.swift */,
+				D58D1B0D24B1C87B0015BEF3 /* WebsiteView.swift */,
 			);
 			path = Tabless;
 			sourceTree = "<group>";
@@ -185,9 +191,11 @@
 				D58D274A24B079DB00F83072 /* HistoryEntry.swift in Sources */,
 				D59B1B0424AB24F6002BF927 /* AppDelegate.swift in Sources */,
 				D59B1B1A24AB40E4002BF927 /* WebView.swift in Sources */,
+				D58D1B0E24B1C87B0015BEF3 /* WebsiteView.swift in Sources */,
 				D58D274824B06AE800F83072 /* AppDatabase.swift in Sources */,
 				D59B1B1824AB2E15002BF927 /* SearchBar.swift in Sources */,
 				D59B1B0624AB24F6002BF927 /* SceneDelegate.swift in Sources */,
+				D58D1B0C24B1B6450015BEF3 /* HistoryView.swift in Sources */,
 				D59B1B0824AB24F6002BF927 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,8 +396,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/groue/GRDB.swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.14.0;
+				kind = exactVersion;
+				version = "5.0.0-beta.6";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
