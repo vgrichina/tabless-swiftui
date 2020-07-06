@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct WebsiteView: View {
-    let website: Website
+    @ObservedObject var webViewModel : WebViewModel
 
     var body: some View {
         VStack {
-            WebView(request: URLRequest(url: URL(string: website.url)!))
-                .navigationBarTitle(Text(website.title), displayMode: .inline)
+            WebView(viewModel: webViewModel)
+                .navigationBarTitle(Text(webViewModel.title), displayMode: .inline)
             HStack {
                 NavigationLink(
                     destination: HistoryView(viewModel: HistoryViewModel(database: Current.database())) ) {
@@ -29,6 +29,6 @@ struct WebsiteView: View {
 
 struct WebsiteView_Previews: PreviewProvider {
     static var previews: some View {
-        WebsiteView(website: Website(url: "https://google.com", title: "Google"))
+        WebsiteView(webViewModel: WebViewModel(url: "https://google.com"))
     }
 }
