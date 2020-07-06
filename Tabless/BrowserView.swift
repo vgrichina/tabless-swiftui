@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct WebsiteView: View {
+struct BrowserView: View {
     @ObservedObject var webViewModel : WebViewModel
 
     var body: some View {
@@ -29,6 +29,6 @@ struct WebsiteView: View {
 
 struct WebsiteView_Previews: PreviewProvider {
     static var previews: some View {
-        WebsiteView(webViewModel: WebViewModel(url: "https://google.com"))
+        BrowserView(webViewModel: WebViewModel(url: "https://google.com"))
     }
 }
