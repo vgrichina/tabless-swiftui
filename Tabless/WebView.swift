@@ -82,6 +82,7 @@ extension Coordinator: WKUIDelegate {
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
 
         // TODO: Should open new window sometimes?
+        // TODO: Looks like can have distinction between JS and non-JS windows https://stackoverflow.com/a/36199278/341267
         if navigationAction.targetFrame == nil {
             webView.load(navigationAction.request)
         }
