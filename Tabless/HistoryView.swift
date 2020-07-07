@@ -22,7 +22,9 @@ struct HistoryView: View {
             }) {
                 VStack(alignment: .leading) {
                     Text(historyEntry.title)
+                        .lineLimit(1)
                     Text(historyEntry.url)
+                        .lineLimit(1)
                         .font(.caption)
                         .foregroundColor(Color.gray)
                 }
