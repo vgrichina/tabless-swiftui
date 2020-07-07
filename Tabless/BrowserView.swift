@@ -11,16 +11,26 @@ import SwiftUI
 struct BrowserView: View {
     @ObservedObject var webViewModel : WebViewModel
 
+    @State private var showHistory = false
+
     var body: some View {
         VStack {
+            Text(webViewModel.title).padding(.all)
             WebView(viewModel: webViewModel)
-                .navigationBarTitle(Text(webViewModel.title), displayMode: .inline)
             HStack {
-                NavigationLink(
-                    destination: HistoryView(viewModel: HistoryViewModel(database: Current.database())) ) {
+                Button(action: {
+                    self.showHistory = true
+                }) {
                     Text("History")
                         .foregroundColor(.blue)
                         .padding(.all)
+                }.sheet(isPresented: $showHistory) {
+                    HistoryView(viewModel: HistoryViewModel(database: Current.database()),
+                                showModal: $showHistory,
+                                onEntrySelected: { historyEntry in
+                                        webViewModel.url = historyEntry.url
+                                        webViewModel.title = historyEntry.title
+                                })
                 }
             }
         }

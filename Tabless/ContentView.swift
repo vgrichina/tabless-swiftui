@@ -30,7 +30,9 @@ struct ContentView: View {
             VStack(alignment: .leading) {
                 SearchBar(text: $searchText)
                 List(websites.filter({ searchText.isEmpty || $0.title.contains(searchText) }), id: \.self) { website in
-                    NavigationLink(destination: BrowserView(webViewModel: WebViewModel(url: website.url))) {
+                    NavigationLink(destination: BrowserView(webViewModel: WebViewModel(url: website.url))
+                                        .navigationBarHidden(true)
+                    ) {
                         WebsiteRow(website: website)
                     }
                 }

@@ -11,14 +11,21 @@ import Combine
 
 struct HistoryView: View {
     @ObservedObject var viewModel: HistoryViewModel
+    @Binding var showModal: Bool
+    let onEntrySelected: (HistoryEntry) -> Void
 
     var body: some View {
         List(viewModel.entries) { historyEntry in
-            VStack(alignment: .leading) {
-                Text(historyEntry.title)
-                Text(historyEntry.url)
-                    .font(.caption)
-                    .foregroundColor(Color.gray)
+            Button(action: {
+                self.showModal = false
+                onEntrySelected(historyEntry)
+            }) {
+                VStack(alignment: .leading) {
+                    Text(historyEntry.title)
+                    Text(historyEntry.url)
+                        .font(.caption)
+                        .foregroundColor(Color.gray)
+                }
             }
         }
     }
@@ -54,6 +61,6 @@ class HistoryViewModel: ObservableObject {
 struct HistoryView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = try! HistoryViewModel(database: .random())
-        return HistoryView(viewModel: viewModel)
+        return HistoryView(viewModel: viewModel, showModal: .constant(true), onEntrySelected: {_ in })
     }
 }
