@@ -48,33 +48,53 @@ class Coordinator: NSObject, WKNavigationDelegate {
     private var titleCancellable: Cancellable?
     private var urlCancellable: Cancellable?
 
+    private var lastHistoryEntry: HistoryEntry?
+
     init(_ webView: WebView) {
         self.webView = webView
     }
 
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-
         print("start load: \(webView.url!) \(webView.title ?? "< none >")")
 
         titleCancellable = webView.publisher(for: \.title)
             .sink { title in
                 print("Title updated: \(title ?? "< none >")")
                 self.webView.viewModel.title = title ?? ""
+                self.recordHistoryIfNeeded(webView)
             }
         urlCancellable = webView.publisher(for: \.url)
             .sink { url in
                 print("URL updated: \(url!)")
-                self.webView.viewModel.url = url!.absoluteString;
+                self.webView.viewModel.url = url!.absoluteString
+                self.recordHistoryIfNeeded(webView)
+
             }
-        // TODO
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         print("finish load: \(webView.url!) \(webView.title ?? "< none >")")
+        self.recordHistoryIfNeeded(webView)
+    }
 
-        var entry = HistoryEntry.new(url: webView.url!.absoluteString, title: webView.title!)
+    private func recordHistoryIfNeeded(_ webView: WKWebView) {
+        let url = webView.url!.absoluteString
+        let title = webView.title!
+
+        var entry: HistoryEntry
+        if lastHistoryEntry == nil || lastHistoryEntry!.url != url {
+            entry = HistoryEntry.new(url: url, title: title)
+        } else {
+            entry = lastHistoryEntry!
+            entry.url = url
+            entry.title = title
+        }
+
         try! Current.database().saveHistoryEntry(&entry)
-        print("inserted with id: \(entry.id!)")
+        // TODO: Debounce stuff like URL changes when visiting Twitter
+
+        print("recorded with id: \(entry.id!)")
+        lastHistoryEntry = entry
     }
 }
 
