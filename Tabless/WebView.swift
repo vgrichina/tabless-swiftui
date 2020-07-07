@@ -30,6 +30,7 @@ struct WebView : UIViewRepresentable {
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
+        webView.uiDelegate = context.coordinator
         return webView
     }
 
@@ -74,6 +75,18 @@ class Coordinator: NSObject, WKNavigationDelegate {
         var entry = HistoryEntry.new(url: webView.url!.absoluteString, title: webView.title!)
         try! Current.database().saveHistoryEntry(&entry)
         print("inserted with id: \(entry.id!)")
+    }
+}
+
+extension Coordinator: WKUIDelegate {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+
+        // TODO: Should open new window sometimes?
+        if navigationAction.targetFrame == nil {
+            webView.load(navigationAction.request)
+        }
+        return nil
+
     }
 }
 
