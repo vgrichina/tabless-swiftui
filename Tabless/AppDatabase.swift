@@ -93,10 +93,9 @@ extension AppDatabase {
 
     // MARK: Reads
 
-    /// Returns a publisher that tracks changes in players ordered by name
-    func entriesOrderedByTitle() -> AnyPublisher<[HistoryEntry], Error> {
+    func entriesOrderedByLatestFirst() -> AnyPublisher<[HistoryEntry], Error> {
         ValueObservation
-            .tracking(HistoryEntry.all().fetchAll)
+            .tracking(HistoryEntry.all().order(sql: "id DESC").fetchAll)
             // Use the .immediate scheduling so that views do not have to wait
             // until the players are loaded.
             .publisher(in: dbQueue, scheduling: .immediate)

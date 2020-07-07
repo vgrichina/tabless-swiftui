@@ -47,7 +47,7 @@ class HistoryViewModel: ObservableObject {
 
     /// Returns a publisher of the entries in the list
     private func entriesPublisher(in database: AppDatabase) -> AnyPublisher<[HistoryEntry], Never> {
-        database.entriesOrderedByTitle()
+        database.entriesOrderedByLatestFirst()
             // Turn database errors into an empty list.
             // TODO: Eventual error presentation is left as an exercise for the reader.
             .catch { error in
