@@ -32,10 +32,28 @@ final class AppDatabase {
             try db.create(table: "history") { t in
                 t.autoIncrementedPrimaryKey("id")
                 t.column("title", .text).notNull()
-                    // Sort player names in a localized case insensitive fashion by default
+                    // Sort titles in a localized case insensitive fashion by default
                     // See https://github.com/groue/GRDB.swift/blob/master/README.md#unicode
                     .collate(.localizedCaseInsensitiveCompare)
                 t.column("url", .text).notNull()
+            }
+        }
+
+        migrator.registerMigration("createSession") { db in
+            try db.create(table: "session") { t in
+                t.autoIncrementedPrimaryKey("id")
+                t.column("title", .text).notNull()
+                    .collate(.localizedCaseInsensitiveCompare)
+            }
+            try db.create(table: "sessionEntry") { t in
+                t.autoIncrementedPrimaryKey("id")
+                t.column("title", .text).notNull()
+                    .collate(.localizedCaseInsensitiveCompare)
+                t.column("url", .text).notNull()
+                t.column("sessionId", .integer)
+                    .notNull()
+                    .indexed()
+                    .references("session", onDelete: .cascade)
             }
         }
 

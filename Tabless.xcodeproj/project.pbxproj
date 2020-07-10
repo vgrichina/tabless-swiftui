@@ -22,6 +22,8 @@
 		D59B1B1824AB2E15002BF927 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B1B1724AB2E14002BF927 /* SearchBar.swift */; };
 		D59B1B1A24AB40E4002BF927 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59B1B1924AB40E3002BF927 /* WebView.swift */; };
 		D59B1B1D24AB43C7002BF927 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D59B1B1C24AB43C7002BF927 /* WebKit.framework */; };
+		D59E024724B6F579001DDC84 /* SessionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59E024624B6F578001DDC84 /* SessionEntry.swift */; };
+		D59E024924B6F94B001DDC84 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D59E024824B6F94B001DDC84 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,8 @@
 		D59B1B1724AB2E14002BF927 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		D59B1B1924AB40E3002BF927 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		D59B1B1C24AB43C7002BF927 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		D59E024624B6F578001DDC84 /* SessionEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionEntry.swift; sourceTree = "<group>"; };
+		D59E024824B6F94B001DDC84 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +91,9 @@
 				D59B1B1924AB40E3002BF927 /* WebView.swift */,
 				D58D274524B06A8F00F83072 /* World.swift */,
 				D58D274724B06AE800F83072 /* AppDatabase.swift */,
+				D59E024824B6F94B001DDC84 /* Session.swift */,
 				D58D274924B079DA00F83072 /* HistoryEntry.swift */,
+				D59E024624B6F578001DDC84 /* SessionEntry.swift */,
 				D58D1B0B24B1B6450015BEF3 /* HistoryView.swift */,
 				D58D1B0D24B1C87B0015BEF3 /* BrowserView.swift */,
 			);
@@ -190,10 +196,12 @@
 				D58D274624B06A8F00F83072 /* World.swift in Sources */,
 				D58D274A24B079DB00F83072 /* HistoryEntry.swift in Sources */,
 				D59B1B0424AB24F6002BF927 /* AppDelegate.swift in Sources */,
+				D59E024724B6F579001DDC84 /* SessionEntry.swift in Sources */,
 				D59B1B1A24AB40E4002BF927 /* WebView.swift in Sources */,
 				D58D1B0E24B1C87B0015BEF3 /* BrowserView.swift in Sources */,
 				D58D274824B06AE800F83072 /* AppDatabase.swift in Sources */,
 				D59B1B1824AB2E15002BF927 /* SearchBar.swift in Sources */,
+				D59E024924B6F94B001DDC84 /* Session.swift in Sources */,
 				D59B1B0624AB24F6002BF927 /* SceneDelegate.swift in Sources */,
 				D58D1B0C24B1B6450015BEF3 /* HistoryView.swift in Sources */,
 				D59B1B0824AB24F6002BF927 /* ContentView.swift in Sources */,
